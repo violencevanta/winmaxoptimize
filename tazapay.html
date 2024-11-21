@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <style>
+        body, html {
+            height: 100%;
+            margin: 0;
+            overflow: hidden;
+        }
+        iframe {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            border: none;
+        }
+    </style>
+</head>
+<body>
+    <script>
+        // Get the current URL
+        var currentURL = window.location.href;
+
+        // Find the question mark in the URL
+        var questionMarkIndex = currentURL.indexOf('?');
+
+        if (questionMarkIndex !== -1) {
+            // Get the URL after the question mark
+            var encodedTargetURL = currentURL.substring(questionMarkIndex + 1);
+
+            // Replace hashtags with slashes
+            var targetURL = encodedTargetURL.replace(/#/g, '/');
+
+            // Create the iframe element
+            var iframe = document.createElement('iframe');
+            
+            // Set the iframe's src to the target URL
+            iframe.src = targetURL;
+
+            // Append the iframe to the body
+            document.body.appendChild(iframe);
+        } else {
+            console.error('The URL does not contain a question mark.');
+        }
+    </script>
+</body>
+</html>
